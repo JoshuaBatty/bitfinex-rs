@@ -1,7 +1,7 @@
-use ticker::*;
+use book::{FundingCurrency as BookFundingCurrency, RawBook, TradingPair as BookTradingPair};
 use candles::Candle;
-use trades::{TradingPair as TradesTradingPair, FundingCurrency as TradesFundingCurrency};
-use book::{TradingPair as BookTradingPair, FundingCurrency as BookFundingCurrency, RawBook};
+use ticker::*;
+use trades::{FundingCurrency as TradesFundingCurrency, TradingPair as TradesTradingPair};
 
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
@@ -17,21 +17,21 @@ pub enum NotificationEvent {
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
 pub enum DataEvent {
-    TickerTradingEvent (i32, TradingPair),
-    TickerFundingEvent (i32, FundingCurrency),
-    TradesTradingSnapshotEvent (i32, Vec<TradesTradingPair>),
-    TradesTradingUpdateEvent (i32, String, TradesTradingPair),
-    TradesFundingSnapshotEvent (i32, Vec<TradesFundingCurrency>),
-    TradesFundingUpdateEvent (i32, String, TradesFundingCurrency),
-    BookTradingSnapshotEvent (i32, Vec<BookTradingPair>),
-    BookTradingUpdateEvent (i32, BookTradingPair),
-    BookFundingSnapshotEvent (i32, Vec<BookFundingCurrency>),
-    BookFundingUpdateEvent (i32, BookFundingCurrency),
-    RawBookEvent (i32, RawBook),
-    RawBookUpdateEvent (i32, Vec<RawBook>),
-    CandlesSnapshotEvent (i32, Vec<Candle>),
-    CandlesUpdateEvent (i32, Candle),
-    HeartbeatEvent (i32, String)
+    TickerTradingEvent(u32, TradingPair),
+    TickerFundingEvent(u32, FundingCurrency),
+    TradesTradingSnapshotEvent(u32, Vec<TradesTradingPair>),
+    TradesTradingUpdateEvent(u32, String, TradesTradingPair),
+    TradesFundingSnapshotEvent(u32, Vec<TradesFundingCurrency>),
+    TradesFundingUpdateEvent(u32, String, TradesFundingCurrency),
+    BookTradingSnapshotEvent(u32, Vec<BookTradingPair>),
+    BookTradingUpdateEvent(u32, BookTradingPair),
+    BookFundingSnapshotEvent(u32, Vec<BookFundingCurrency>),
+    BookFundingUpdateEvent(u32, BookFundingCurrency),
+    RawBookEvent(u32, RawBook),
+    RawBookUpdateEvent(u32, Vec<RawBook>),
+    CandlesSnapshotEvent(u32, Vec<Candle>),
+    CandlesUpdateEvent(u32, Candle),
+    HeartbeatEvent(u32, String),
 }
 
 #[serde(rename_all = "camelCase")]
@@ -55,7 +55,7 @@ pub struct TradingSubscriptionMessage {
     pub channel: String,
     pub chan_id: u32,
     pub symbol: String,
-    pub pair: String
+    pub pair: String,
 }
 
 #[serde(rename_all = "camelCase")]
@@ -65,7 +65,7 @@ pub struct FundingSubscriptionMessage {
     pub channel: String,
     pub chan_id: u32,
     pub symbol: String,
-    pub currency: String
+    pub currency: String,
 }
 
 #[serde(rename_all = "camelCase")]
@@ -74,7 +74,7 @@ pub struct CandlesSubscriptionMessage {
     pub event: String,
     pub channel: String,
     pub chan_id: u32,
-    pub key: String
+    pub key: String,
 }
 
 #[serde(rename_all = "camelCase")]
@@ -87,5 +87,5 @@ pub struct RawBookSubscriptionMessage {
     pub prec: String,
     pub freq: String,
     pub len: String,
-    pub pair: String
+    pub pair: String,
 }
