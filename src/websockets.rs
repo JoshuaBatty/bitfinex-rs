@@ -187,15 +187,15 @@ impl WebSockets {
                     Message::Text(text) => {
                         if let Some(ref mut h) = self.event_handler {
                             if text.find(INFO) != None {
-                                println!("{:?}", text);
+                                println!("info {:?}", text);
                                 let event: NotificationEvent = from_str(&text)?;
                                 h.on_connect(event);
                             } else if text.find(SUBSCRIBED) != None {
-                                println!("{:?}", text);
+                                println!("subscribed {:?}", text);
                                 let event: NotificationEvent = from_str(&text)?;
                                 h.on_subscribed(event);
                             } else {
-                                println!("{:?}", text);
+                                println!("update evetn {:?}", text);
                                 let event: DataEvent = from_str(&text)?;
                                 if let DataEvent::HeartbeatEvent(_a, _b) = event {
                                     continue;
