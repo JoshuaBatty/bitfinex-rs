@@ -32,11 +32,14 @@ pub struct RawBook {
 
 impl Book {
     pub fn new() -> Self {
-        Book { client: Client::new(None, None) }
+        Book {
+            client: Client::new(None, None),
+        }
     }
 
     pub fn funding_currency<S>(&self, symbol: S, precision: S) -> Result<(Vec<FundingCurrency>)>
-        where S: Into<String>
+    where
+        S: Into<String>,
     {
         let endpoint: String = format!("book/f{}/{}", symbol.into(), precision.into());
         let data = self.client.get(endpoint, String::new())?;
@@ -47,8 +50,9 @@ impl Book {
     }
 
     pub fn trading_pair<S>(&self, symbol: S, precision: S) -> Result<(Vec<TradingPair>)>
-        where S: Into<String>
-    {    
+    where
+        S: Into<String>,
+    {
         let endpoint: String = format!("book/t{}/{}", symbol.into(), precision.into());
         let data = self.client.get(endpoint, String::new())?;
 
