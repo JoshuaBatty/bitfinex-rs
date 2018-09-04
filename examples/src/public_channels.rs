@@ -31,12 +31,7 @@ impl EventHandler for WebSocketHandler {
                 "Ticker Trading ({})- Bid {:?}, Ask: {}",
                 channel, trading.bid, trading.ask
             );
-        } else if let DataEvent::RawBookRemoveEvent(channel, raw_book) = event {
-            println!(
-                "Raw Remove event!! book ({}) - Price {:?}, Amount: {}",
-                channel, raw_book.price, raw_book.amount
-            );
-        } else if let DataEvent::RawBookUpdateEvent(channel, raw_book) = event {
+        } else if let DataEvent::BookTradingUpdateEvent(channel, raw_book) = event {
             println!(
                 "Raw book update event ({}) - Price {:?}, Amount: {}",
                 channel, raw_book.price, raw_book.amount
@@ -60,13 +55,13 @@ fn main() {
     // web_socket.subscribe_ticker(BTCUSD, EventType::Trading);
 
     // // TRADES
-    // web_socket.subscribe_trades(BTCUSD, EventType::Trading);
+    web_socket.subscribe_trades(BTCUSD, EventType::Trading);
 
     // // BOOKS
     // web_socket.subscribe_books(BTCUSD, EventType::Trading, P0, "F0", 25);
 
     // // RAW BOOKS
-    web_socket.subscribe_raw_books(BTCUSD, EventType::Trading);
+    //web_socket.subscribe_raw_books(BTCUSD, EventType::Trading);
 
     // CANDLES
     //   web_socket.subscribe_candles(BTCUSD, "1m");

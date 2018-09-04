@@ -21,7 +21,7 @@ mod candles;
 mod client;
 mod orders;
 pub mod ticker;
-mod trades;
+pub mod trades;
 
 pub mod api;
 pub mod currency;
