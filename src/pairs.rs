@@ -1,3 +1,4 @@
+pub static ALL : &'static str = "ALL";
 pub static BTCUSD : &'static str = "BTCUSD";
 pub static LTCUSD : &'static str = "LTCUSD";
 pub static LTCBTC : &'static str = "LTCBTC";

@@ -197,7 +197,7 @@ impl WebSockets {
                             } else {
                                 //println!("update event {:?}", text);
                                 let event: DataEvent = from_str(&text)?;
-                                //println!("event ] {:?}", event);
+                                println!("event ] {:?}", event);
                                 if let DataEvent::HeartbeatEvent(_a, _b) = event {
                                     continue;
                                 } else {

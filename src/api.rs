@@ -1,5 +1,6 @@
 use book::*;
 use ticker::*;
+use tickers::*;
 use trades::*;
 use candles::*;
 use orders::*;
@@ -9,6 +10,7 @@ use account::*;
 pub struct Bitfinex {
     pub book: Book,
     pub ticker: Ticker,
+    pub tickers: Tickers,
     pub trades: Trades,
     pub candles: Candles,
     pub orders: Orders,
@@ -20,6 +22,7 @@ impl Bitfinex {
         Bitfinex { 
             book: Book::new(),
             ticker: Ticker::new(),
+            tickers: Tickers::new(),
             trades: Trades::new(),
             candles: Candles::new(),
             orders: Orders::new(api_key.clone(), secret_key.clone()),
